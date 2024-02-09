@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve:webapp": "nx serve webapp",
-    "build:webapp": "nx build webapp",
-    "test:webapp": "nx test webapp",
-    "lint:webapp": "nx lint webapp",
-    "e2e:webapp": "nx e2e webapp",
+    "start": "nx serve webapp",
+    "build": "nx build webapp",
+    "test": "nx test webapp",
+    "lint": "nx lint webapp",
+    "e2e": "nx e2e webapp",
     "storybook": "nx run ui:storybook",
     "build:storybook": "nx run ui:build-storybook",
     "graph": "nx dep-graph"
