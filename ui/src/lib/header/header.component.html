@@ -1,0 +1,53 @@
+<header
+  class="sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-2xl sm:px-6 lg:px-8 dark:bg-transparent"
+>
+  <div class="flex w-full flex-wrap items-center justify-between">
+    <div class="mr-6 flex lg:hidden">
+      <!-- Add Mobile navigation here -->
+    </div>
+    <div class="relative flex flex-grow items-center md:flex-[0.2_0_auto]">
+      <a
+        href="/"
+        aria-label="Home page"
+        class="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+      >
+        <h1
+          class="my-4 hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
+        >
+          {{ title }}
+        </h1>
+        <img
+          alt="Logo"
+          src="/assets/logo_con.svg"
+          class="h-9 w-auto rounded-full fill-slate-700 dark:fill-sky-100"
+        />
+      </a>
+    </div>
+    <div class="hidden flex-1 md:block">
+      <!-- Add Search here -->
+    </div>
+    <div
+      class="relative flex justify-end sm:gap-4 md:flex-[0.2_0_auto] md:gap-8"
+    >
+      <ul class="list-reset hidden flex-1 items-center justify-end xl:flex">
+        <li class="mr-3">
+          <a
+            class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
+            href="/artists"
+          >
+            Artists
+          </a>
+        </li>
+        <li class="mr-3">
+          <a
+            class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
+            href="/events"
+          >
+            Events
+          </a>
+        </li>
+      </ul>
+      <projectx-theme-button />
+    </div>
+  </div>
+</header>

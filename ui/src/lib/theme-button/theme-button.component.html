@@ -1,0 +1,19 @@
+<button
+  (click)="toggleTheme()"
+  type="button"
+  class="inline-flex flex-none flex-shrink-0 items-center p-2 text-black"
+>
+  <ng-icon
+    *ngIf="theme === 'dark'"
+    name="heroMoon"
+    class="h-5 w-5 text-white"
+    aria-hidden="true"
+  ></ng-icon>
+  <ng-icon
+    *ngIf="theme !== 'dark'"
+    name="heroSun"
+    class="h-5 w-5 text-black"
+    aria-hidden="true"
+  ></ng-icon>
+  <span class="sr-only">Toggle Theme</span>
+</button>

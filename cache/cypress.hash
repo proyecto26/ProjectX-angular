@@ -1,0 +1,73 @@
+{
+  "10359118602273407971": {
+    "e2e": {
+      "command": "cypress run",
+      "options": {
+        "cwd": "apps/project-x-e2e"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "cypress"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/videos",
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/screenshots"
+      ],
+      "configurations": {
+        "production": {
+          "command": "cypress run --env webServerCommand=\"nx run project-x:serve:production\""
+        }
+      }
+    },
+    "e2e-ci--src/e2e/app.cy.ts": {
+      "outputs": [
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/videos",
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/screenshots"
+      ],
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "cypress"
+          ]
+        }
+      ],
+      "cache": true,
+      "command": "cypress run --env webServerCommand=\"nx run project-x:serve-static\" --spec src/e2e/app.cy.ts",
+      "options": {
+        "cwd": "apps/project-x-e2e"
+      }
+    },
+    "e2e-ci": {
+      "executor": "nx:noop",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "cypress"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/videos",
+        "{workspaceRoot}/dist/cypress/apps/project-x-e2e/screenshots"
+      ],
+      "dependsOn": [
+        {
+          "target": "e2e-ci--src/e2e/app.cy.ts",
+          "projects": "self",
+          "params": "forward"
+        }
+      ]
+    }
+  }
+}

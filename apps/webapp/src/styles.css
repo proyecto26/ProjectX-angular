@@ -1,0 +1,25 @@
+@import url('./theme/variables.css');
+@import url('./theme/dark.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ */
+
+@layer components {
+  .navlink {
+    @apply font-light hover:font-bold text-light dark:text-dark;
+  }
+  .navlink.active {
+    @apply font-bold;
+  }
+}

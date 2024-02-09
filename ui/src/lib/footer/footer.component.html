@@ -1,0 +1,33 @@
+<footer class="bg-dark-gray py-6">
+  <div
+    class="mx-auto container py-12 px-6 md:flex md:items-center md:justify-between lg:px-8"
+  >
+    <div
+      class="space-6 md:order-2 flex flex-col md:flex-row items-center justify-between"
+    >
+      <div class="text-gray-300 text-sm lg:text-base flex gap-4">
+        <a href="/privacy" class="navlink"> Privacy Policy </a>
+        <a href="/terms" class="navlink"> Terms of Use </a>
+      </div>
+      <div class="mt-8 md:mt-0 md:ml-4 flex flex-row gap-4">
+        <a
+          *ngFor="let item of navigation"
+          [href]="item.href"
+          class="text-gray-300 hover:text-white transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
+          [attr.aria-label]="item.label"
+        >
+          <ng-icon
+            [name]="item.icon"
+            class="h-6 w-6 text-black"
+            aria-hidden="true"
+          ></ng-icon>
+        </a>
+      </div>
+    </div>
+    <div class="mt-8 md:order-1 md:mt-0">
+      <div class="text-center text-medium font-medium text-sm lg:text-base">
+        Copyright &copy; {{ currentYear }} ProjectX, All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

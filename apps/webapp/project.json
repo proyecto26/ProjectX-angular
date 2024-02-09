@@ -1,0 +1,88 @@
+{
+  "name": "webapp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "webapp",
+  "sourceRoot": "apps/webapp/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/webapp",
+        "index": "apps/webapp/src/index.html",
+        "browser": "apps/webapp/src/main.ts",
+        "polyfills": [
+          "zone.js",
+          "apps/webapp/src/polyfills.ts"
+        ],
+        "tsConfig": "apps/webapp/tsconfig.app.json",
+        "assets": [
+          "apps/webapp/src/favicon.ico",
+          "apps/webapp/src/assets"
+        ],
+        "styles": [
+          "@angular/material/prebuilt-themes/purple-green.css",
+          "apps/webapp/src/styles.css"
+        ],
+        "scripts": [],
+        "server": "apps/webapp/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/webapp/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "webapp:build:production"
+        },
+        "development": {
+          "buildTarget": "webapp:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "webapp:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "webapp:build",
+        "staticFilePath": "dist/apps/webapp/browser"
+      }
+    }
+  }
+}
