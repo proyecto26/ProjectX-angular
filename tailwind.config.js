@@ -1,11 +1,7 @@
-const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    ...createGlobPatternsForDependencies(__dirname),
-  ],
   darkMode: 'class', // Use css classes for dark mode
   // variants: {}, // activate any variant you want here
   plugins: [
