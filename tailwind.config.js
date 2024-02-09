@@ -21,6 +21,7 @@ module.exports = {
         sans: ['Poppins', 'Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        'dark-gray': '#1A1B1D',
         primary: {
           DEFAULT: 'var(--theme-color-primary)',
           contrast: 'var(--theme-color-primary-contrast)',
