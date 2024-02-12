@@ -12,4 +12,9 @@ import { ThemeButtonComponent } from '../theme-button/theme-button.component';
 })
 export class HeaderComponent {
   @Input() title?: string;
+  themeEmitted = ''
+
+  onSetTheme(event: string) {
+    this.themeEmitted = event;
+  }
 }

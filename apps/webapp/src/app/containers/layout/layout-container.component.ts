@@ -9,7 +9,7 @@ import { HeaderComponent, FooterComponent } from '@projectx/ui';
   standalone: true,
 })
 export class LayoutContainerComponent {
-  @Input() title?: string;
+  @Input() title?: string = 'Jam Sessions';
 
   navigationLinks = [
     {
