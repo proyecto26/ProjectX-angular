@@ -1,10 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { HeaderComponent, FooterComponent } from '@projectx/ui';
+import {
+  HdObscureAddressPipe,
+  HdWalletAdapterDirective,
+} from '@heavy-duty/wallet-adapter-cdk';
+import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
 
 @Component({
   imports: [
     HeaderComponent,
     FooterComponent,
+    HdWalletAdapterDirective,
+    HdObscureAddressPipe,
+    HdWalletMultiButtonComponent,
   ],
   selector: 'webapp-layout-container',
   templateUrl: './layout-container.component.html',
