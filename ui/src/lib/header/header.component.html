@@ -15,7 +15,7 @@
         <h1
           class="my-4 hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
         >
-          {{ title }}
+          {{ themeEmitted }} {{ title }}
         </h1>
         <img
           alt="Logo"
@@ -48,7 +48,7 @@
           </a>
         </li>
       </ul>
-      <projectx-theme-button />
+      <projectx-theme-button (setTheme)="onSetTheme($event)" />
     </div>
   </div>
 </header>
