@@ -2,7 +2,10 @@ import { Component, Input } from '@angular/core';
 import { HeaderComponent, FooterComponent } from '@projectx/ui';
 
 @Component({
-  imports: [HeaderComponent, FooterComponent],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+  ],
   selector: 'webapp-layout-container',
   templateUrl: './layout-container.component.html',
   styleUrls: ['./layout-container.component.css'],

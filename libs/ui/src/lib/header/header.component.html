@@ -13,9 +13,9 @@
         class="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
       >
         <h1
-          class="my-4 hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
+          class="my-4 items-center hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
         >
-          {{ themeEmitted }} {{ title }}
+          {{ title }}
         </h1>
         <img
           alt="Logo"
@@ -48,6 +48,7 @@
           </a>
         </li>
       </ul>
+      <ng-content select="[right]"></ng-content>
       <projectx-theme-button (setTheme)="onSetTheme($event)" />
     </div>
   </div>
