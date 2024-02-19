@@ -31,20 +31,12 @@
       class="relative flex justify-end sm:gap-4 md:flex-[0.2_0_auto] md:gap-8"
     >
       <ul class="list-reset hidden flex-1 items-center justify-end xl:flex">
-        <li class="mr-3">
+        <li class="mr-3" *ngFor="let link of links">
           <a
             class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-            href="/artists"
+            [href]="link.href"
           >
-            Artists
-          </a>
-        </li>
-        <li class="mr-3">
-          <a
-            class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-            href="/events"
-          >
-            Events
+            {{ link.label }}
           </a>
         </li>
       </ul>

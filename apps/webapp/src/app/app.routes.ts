@@ -7,7 +7,12 @@ export const appRoutes: Route[] = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/home.page').then((m) => m.HomePage),
+          import('./pages/home/home.page').then((m) => m.HomePage),
+      },
+      {
+        path: 'account',
+        loadComponent: () =>
+          import('./pages/account/account.page').then((m) => m.AccountPage),
       },
       {
         path: '',

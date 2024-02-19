@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LayoutContainerComponent } from '../containers/layout/layout-container.component';
+import { LayoutContainerComponent } from '../../containers/layout/layout-container.component';
 
 @Component({
   selector: 'webapp-home',

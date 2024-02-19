@@ -22,7 +22,11 @@ import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-materia
 export class LayoutContainerComponent {
   @Input() title?: string = 'Jam Sessions';
 
-  navigationLinks = [
+  headerLinks = [
+    { label: 'Account', href: '/account' },
+  ];
+
+  footerLinks = [
     {
       label: 'ProjectX on Facebook',
       href: 'https://facebook.com/projectx',
