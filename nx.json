@@ -81,7 +81,11 @@
   "tasksRunnerOptions": {
     "default": {
       "options": {
-        "cacheableOperations": ["build-storybook"]
+        "cacheableOperations": ["build-storybook"],
+        "runtimeCacheInputs": [
+          "echo $NODE_ENV",
+          "echo $NG_APP_SHYFT_API_KEY"
+        ]
       }
     }
   }

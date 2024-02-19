@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ThemeButtonComponent } from '../theme-button/theme-button.component';
@@ -12,9 +12,10 @@ import { ThemeButtonComponent } from '../theme-button/theme-button.component';
 })
 export class HeaderComponent {
   @Input() title?: string;
-  themeEmitted = ''
+  @Input() links?: Array<{ label: string; href: string }> = [];
+  @Output() setTheme = new EventEmitter<string>();
 
-  onSetTheme(event: string) {
-    this.themeEmitted = event;
+  onSetTheme(theme: string) {
+    this.setTheme.emit(theme);
   }
 }

@@ -1,0 +1,45 @@
+<webapp-layout-container>
+  <section class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:pb-24">
+    <div class="max-w-xl">
+      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Account</h1>
+      <p class="mt-1 text-sm text-gray-500">
+        Check the status of your account
+      </p>
+    </div>
+
+    <section aria-labelledby="recent-heading" class="mt-16">
+      <h2 id="recent-heading" class="sr-only">
+        Wallet Status
+      </h2>
+
+      <div class="space-y-20">
+        <div *ngIf="(account$ | async) as account">
+          <div
+            class="rounded-lg bg-gray-50 px-4 py-6 sm:flex sm:items-center sm:justify-between sm:space-x-6 sm:px-6 lg:space-x-8">
+            <dl
+              class="flex-auto space-y-6 divide-y divide-gray-200 text-sm text-gray-600 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:space-y-0 sm:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
+              <div class="flex justify-between sm:block">
+                <dd class="sm:mt-1">
+                  <img [src]="account.info?.image" alt="account.info?.name || token"
+                    class="h-16 w-16 rounded object-cover object-center" />
+                </dd>
+              </div>
+              <div class="flex justify-between pt-6 sm:block sm:pt-0">
+                <dt class="font-medium text-gray-900">Balance</dt>
+                <dd class="sm:mt-1">
+                  {{ account.balance }}
+                </dd>
+              </div>
+              <div class="flex justify-between pt-6 font-medium text-gray-900 sm:block sm:pt-0">
+                <dt>Is Frozen</dt>
+                <dd class="sm:mt-1">
+                  {{ account.isFrozen ? 'Yes' : 'No' }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</webapp-layout-container>

@@ -1,5 +1,5 @@
 <section class="min-h-screen flex flex-col">
-  <projectx-header [title]="title">
+  <projectx-header [title]="title" [links]="headerLinks">
     <div right>
       <hd-wallet-multi-button></hd-wallet-multi-button>
     </div>
@@ -7,5 +7,5 @@
   <main class="flex flex-grow">
     <ng-content></ng-content>
   </main>
-  <projectx-footer [navigation]="navigationLinks" />
+  <projectx-footer [navigation]="footerLinks" />
 </section>
