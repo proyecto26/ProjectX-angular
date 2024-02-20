@@ -34,6 +34,7 @@
     "@ng-icons/ionicons": "^26.4.0",
     "@ngrx/signals": "^17.1.0",
     "@nx/angular": "18.0.3",
+    "@solana/spl-token": "^0.4.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",

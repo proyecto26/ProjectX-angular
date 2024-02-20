@@ -1,3 +1,3 @@
 export * from './store'
-export * from './model'
+export * from './models'
 export * from './service'
