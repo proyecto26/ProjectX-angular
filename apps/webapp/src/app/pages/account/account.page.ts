@@ -1,28 +1,20 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { LayoutContainerComponent } from '../../containers/layout/layout-container.component';
-import { WalletStore } from '../../store';
 
 @Component({
   selector: 'webapp-account',
   standalone: true,
-  imports: [CommonModule, LayoutContainerComponent],
+  imports: [RouterModule, CommonModule, LayoutContainerComponent],
   templateUrl: './account.page.html',
   styleUrl: './account.page.css',
-  providers: [WalletStore],
+  providers: [],
 })
-export class AccountPage implements OnInit {
-  readonly walletStore = inject(WalletStore);
-  readonly account$ = this.walletStore.account();
-  readonly transactions = this.walletStore.transactions;
-  readonly error = this.walletStore.error;
-
-  ngOnInit() {
-    this.loadTransactions();
-  }
-
-  loadTransactions() {
-    this.walletStore.loadTransactions(10);
-  }
+export class AccountPage {
+  links = [
+    { path: 'wallet', label: 'Wallet' },
+    { path: 'send', label: 'Send Tokens' },
+  ];
 }

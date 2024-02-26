@@ -1,0 +1,35 @@
+<form [formGroup]="form" class="flex flex-col items-center gap-5">
+  <!-- Transfer From to a wallet account, fields: memo, amount, destiny wallet using Angular Material Components with required validations and error messages -->
+  <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full">
+    <mat-label>Memo</mat-label>
+    <input matInput placeholder="Memo" formControlName="memo" required />
+    <mat-icon matSuffix>description</mat-icon>
+    <mat-error *ngIf="form.get('memo').hasError('required')">
+      Memo is requiredf
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full">
+    <mat-label>Amount</mat-label>
+    <input type="number" matInput placeholder="Memo" formControlName="amount" required />
+    <mat-icon matSuffix>attach_money</mat-icon>
+    <mat-error *ngIf="form.get('amount').hasError('required')">
+      Amount is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full">
+    <mat-label>Receiver</mat-label>
+    <input matInput placeholder="Receiver" formControlName="receiver" required />
+    <mat-icon matSuffix>key</mat-icon>
+    <mat-error *ngIf="form.get('receiver').hasError('required')">
+      Receiver is requiredf
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onSubmit()"
+    class="self-end w-auto rounded-md bg-indigo-600 px-10 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    Transfer
+  </button>
+
+</form>

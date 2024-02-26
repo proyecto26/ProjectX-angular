@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { getAssociatedTokenAddressSync } from '@solana/spl-token';
-import { map, of, timeout } from 'rxjs';
 import { PublicKey } from '@solana/web3.js';
+import { map, of, timeout } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import {

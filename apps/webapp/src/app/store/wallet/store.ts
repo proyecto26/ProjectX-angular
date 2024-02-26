@@ -1,9 +1,11 @@
 import { computed, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
   withComputed,
+  withHooks,
   withMethods,
   withState,
 } from '@ngrx/signals';
@@ -30,6 +32,19 @@ export const WalletStore = signalStore(
         error: '',
       }
   ),
+  withHooks({
+    onInit(store) {
+      const wallet = store.wallet();
+      wallet.connected$.pipe(takeUntilDestroyed()).subscribe((connected) => {
+        connected && localStorage.setItem('autoConnect', 'true');
+      });
+      wallet.disconnecting$
+        .pipe(takeUntilDestroyed())
+        .subscribe((disconnected) => {
+          disconnected && localStorage.removeItem('autoConnect');
+        });
+    },
+  }),
   withComputed((store, walletService = inject(ShyftApiService)) => ({
     account: computed(() => {
       return store

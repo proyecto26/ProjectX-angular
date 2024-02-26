@@ -12,7 +12,9 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideRouter(appRoutes),
     provideAnimationsAsync(),
-    provideWalletAdapter(),
+    provideWalletAdapter({
+      autoConnect: !!localStorage.getItem('autoConnect'),
+    }),
     provideHttpClient(),
   ],
 };
