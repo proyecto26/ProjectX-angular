@@ -1,1 +1,25 @@
-<webapp-forms-transfer></webapp-forms-transfer>
+<webapp-forms-transfer
+  *ngIf="(publicKey$ | async) as publicKey; else elsePublicKey"
+  [isLoading]="!!(isSendTransactionLoading && isSendTransactionLoading())"
+  (submitForm)="onSubmitForm($event, publicKey)"
+/>
+
+<ng-template #elsePublicKey>
+  <div *ngIf="(connected$ | async) as connected; else disconnected" class="mt-4 flex justify-center">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+  <ng-template #disconnected>
+    <p class="text-gray-500 p-5">
+      Please connect your wallet to be able to send transactions.
+    </p>
+  </ng-template>
+</ng-template>
+
+<swal
+  #msgSwal
+  title="Error"
+  [text]="message"
+  icon="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+/>

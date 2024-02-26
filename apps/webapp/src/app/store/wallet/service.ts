@@ -22,6 +22,12 @@ const isInvalidTransaction = (transaction: Transaction) => {
 export class ShyftApiService {
   private readonly http = inject(HttpClient);
 
+  getRpcUrl() {
+    const url = new URL(environment.rpcUrl);
+    url.searchParams.set('api_key', environment.shyftApiKey);
+    return url.toString();
+  }
+
   getAccount(publicKey?: string) {
     if (!publicKey) {
       return of(null);

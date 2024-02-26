@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormControl,
@@ -11,7 +11,11 @@ import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-import { WalletStore } from '../../../store';
+export type TransferForm = {
+  memo: string;
+  amount: number;
+  receiver: string;
+};
 
 @Component({
   selector: 'webapp-forms-transfer',
@@ -23,13 +27,14 @@ import { WalletStore } from '../../../store';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatError
+    MatError,
   ],
   templateUrl: './transfer.component.html',
-  providers: [WalletStore],
 })
 export class TransferFormComponent implements OnInit {
-  readonly walletStore = inject(WalletStore);
+  @Input() isLoading = false;
+  @Output() readonly submitForm = new EventEmitter<TransferForm>();
+
   readonly form = new FormGroup({
     memo: new FormControl('', Validators.required),
     amount: new FormControl<number | undefined>(undefined, Validators.required),
@@ -45,6 +50,10 @@ export class TransferFormComponent implements OnInit {
   }
 
   onSubmit() {
-    alert('Transfer submitted');
+    this.submitForm.emit({
+      memo: this.form.value.memo || '',
+      amount: this.form.value.amount || 0,
+      receiver: this.form.value.receiver || '',
+    });
   }
 }
