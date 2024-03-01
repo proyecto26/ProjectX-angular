@@ -83,7 +83,7 @@ export class ShyftApiService {
               : {
                   timestamp: new Date(transaction.timestamp),
                   memo: transaction.actions[1].info.message,
-                  amount: transaction.actions[1].info.amount,
+                  amount: transaction.actions[0].info.amount,
                   sign: transaction.actions[0].info.sender === wallet ? -1 : 1,
                   type: 'transfer',
                 }),

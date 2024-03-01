@@ -44,12 +44,13 @@ export class TransferFormComponent implements OnInit {
   ngOnInit() {
     this.form.setValue({
       memo: '',
-      amount: 0,
+      amount: null,
       receiver: '',
     });
   }
 
   onSubmit() {
+    if (this.form.invalid) return;
     this.submitForm.emit({
       memo: this.form.value.memo || '',
       amount: this.form.value.amount || 0,

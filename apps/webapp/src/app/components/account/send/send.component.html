@@ -16,10 +16,21 @@
 </ng-template>
 
 <swal
-  #msgSwal
-  title="Error"
-  [text]="message"
-  icon="question"
-  [showCancelButton]="true"
-  [focusCancel]="true"
+  #errorSwal
+  title="Ops! Something went wrong"
+  [text]="errorMessage"
+  icon="error"
+  [showCancelButton]="false"
+  [focusCancel]="false"
+/>
+
+<swal
+  #confirmationSwal
+  title="The transaction has been sent, yay! 🎉"
+  text="Your transaction has been sent successfully. You can check the status of your transaction in the transaction history."
+  icon="success"
+  [showCancelButton]="false"
+  [focusCancel]="false"
+  confirmButtonText="Go to transaction history"
+  (confirm)="onGoToTransactionHistory()"
 />

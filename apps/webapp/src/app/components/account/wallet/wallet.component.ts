@@ -1,16 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { heroArrowUp, heroArrowDown } from '@ng-icons/heroicons/outline';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
 
 import { WalletStore } from '../../../store';
 
 @Component({
   selector: 'webapp-account-wallet',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, MatProgressSpinnerModule],
+  imports: [CommonModule, MatTabsModule, MatProgressSpinnerModule, NgIconComponent],
   templateUrl: './wallet.component.html',
-  providers: [WalletStore],
+  providers: [WalletStore, provideIcons({ heroArrowUp, heroArrowDown })],
 })
 export class WalletComponent implements OnInit {
   readonly walletStore = inject(WalletStore);

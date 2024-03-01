@@ -36,6 +36,7 @@ const WALLET_STATE = new InjectionToken<WalletState>('WalletState', {
     connection: inject(ConnectionStore),
     transactions: [],
     error: '',
+    signature: '',
   }),
 });
 
@@ -77,6 +78,9 @@ export const WalletStore = signalStore(
       walletService = inject(ShyftApiService),
       transactionSender = injectTransactionSender()
     ) => ({
+      clearSignature(): void {
+        patchState(store, { signature: undefined });
+      },
       loadTransactions: rxMethod<number>(
         pipe(
           tap(() => patchState(store, { isLoading: true })),
@@ -84,18 +88,17 @@ export const WalletStore = signalStore(
             combineLatest([store.wallet().publicKey$, of(limit)])
           ),
           switchMap(([publicKey, limit]) => {
-            if (!publicKey) return [];
-            return walletService.getTransactions(publicKey, limit).pipe(
-              tapResponse({
-                next: (transactions) => patchState(store, { transactions }),
-                error: (error: Error) => {
-                  console.error('error', error);
-                  patchState(store, { error: error.message });
-                },
-                complete: () =>
-                  patchState(store, { isLoading: false, error: undefined }),
-              })
-            );
+            if (!publicKey) return of([]);
+            return walletService.getTransactions(publicKey, limit)
+          }),
+          tapResponse({
+            next: (transactions) => patchState(store, { transactions }),
+            error: (error: Error) => {
+              console.error('error', error);
+              patchState(store, { error: error.message });
+            },
+            complete: () =>
+              patchState(store, { isLoading: false, error: undefined }),
           })
         )
       ),
@@ -115,30 +118,29 @@ export const WalletStore = signalStore(
             ])
           ),
           switchMap(([tokenInfo, payload]) => {
-            return transactionSender
-              .send(
-                createTransferInstructions({
-                  amount: payload.amount * 10 ** tokenInfo.decimals,
-                  memo: payload.memo,
-                  mintAddress: payload.tokenAddress,
-                  senderAddress: payload.senderAddress,
-                  receiverAddress: payload.receiverAddress,
-                  fundReceiver: true,
-                })
-              )
-              .pipe(
-                tapResponse({
-                  next: (signature) => patchState(store, { signature }),
-                  error: (error: Error) => {
-                    console.error('error', error);
-                    patchState(store, { error: error.message });
-                  },
-                  complete: () => {
-                    console.log('completed');
-                    patchState(store, { isLoading: false, error: undefined });
-                  },
-                })
-              );
+            return transactionSender.send(
+              createTransferInstructions({
+                amount: payload.amount * 10 ** tokenInfo.decimals,
+                memo: payload.memo,
+                mintAddress: payload.tokenAddress,
+                senderAddress: payload.senderAddress,
+                receiverAddress: payload.receiverAddress,
+                fundReceiver: true,
+              })
+            );
+          }),
+          tapResponse({
+            next: (signature) => {
+              return patchState(store, { signature });
+            },
+            error: (error: Error) => {
+              console.error('error', error);
+              patchState(store, { error: error.message });
+            },
+            complete: () => {
+              console.log('completed');
+              patchState(store, { isLoading: false, error: undefined });
+            },
           })
         )
       ),
