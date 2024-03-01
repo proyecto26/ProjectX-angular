@@ -22,6 +22,7 @@ const isInvalidTransaction = (transaction: Transaction) => {
 @Injectable({ providedIn: 'root' })
 export class ShyftApiService {
   private readonly http = inject(HttpClient);
+  private readonly tokens = new Map<string, TokenInfoResponse>();
 
   getRpcUrl() {
     const url = new URL(environment.rpcUrl);
@@ -93,6 +94,9 @@ export class ShyftApiService {
   }
 
   getTokenInfo(tokenAddress = environment.mintUSDC) {
+    if (this.tokens.has(tokenAddress)) {
+      return of(this.tokens.get(tokenAddress)!.result);
+    }
     const url = new URL(
       '/sol/v1/token/get_info',
       environment.shyftApiUrl
@@ -108,6 +112,9 @@ export class ShyftApiService {
       })
       .pipe(
         timeout(5000),
-        map((res) => res.result));
+        map((res) => {
+          this.tokens.set(tokenAddress, res);
+          return res.result
+        }));
   }
 }

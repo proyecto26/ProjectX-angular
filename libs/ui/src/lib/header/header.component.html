@@ -34,7 +34,7 @@
         <li class="mr-3" *ngFor="let link of links">
           <a
             class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-            [href]="link.href"
+            [routerLink]="link.href"
           >
             {{ link.label }}
           </a>
