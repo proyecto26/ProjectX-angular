@@ -8,21 +8,15 @@
   "targets": {
     "build": {
       "executor": "@ngx-env/builder:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": ["crypto", "stream"],
         "outputPath": "dist/apps/webapp",
         "index": "apps/webapp/src/index.html",
         "browser": "apps/webapp/src/main.ts",
-        "polyfills": [
-          "apps/webapp/src/polyfills.ts"
-        ],
+        "polyfills": ["apps/webapp/src/polyfills.ts"],
         "tsConfig": "apps/webapp/tsconfig.app.json",
-        "assets": [
-          "apps/webapp/src/favicon.ico",
-          "apps/webapp/src/assets"
-        ],
+        "assets": ["apps/webapp/src/favicon.ico", "apps/webapp/src/assets"],
         "styles": [
           "@angular/material/prebuilt-themes/purple-green.css",
           "apps/webapp/src/styles.css"
@@ -34,6 +28,7 @@
       },
       "configurations": {
         "production": {
+          "polyfills": ["apps/webapp/src/polyfills.ts"],
           "fileReplacements": [
             {
               "replace": "apps/webapp/src/environments/environment.ts",

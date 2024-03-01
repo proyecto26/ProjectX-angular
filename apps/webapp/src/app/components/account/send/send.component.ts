@@ -59,7 +59,6 @@ export class SendComponent implements OnInit {
   }
 
   async onSubmitForm(payload: TransferForm, publicKey: PublicKey) {
-    console.log('onSubmitForm', payload);
     this.walletStore.sendTransaction({
       amount: payload.amount,
       memo: payload.memo,
