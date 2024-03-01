@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@projectx/ui": ["ui/src/index.ts"]
+      "@projectx/ui": ["libs/ui/src/index.ts"],
+      "crypto": ["node_modules/crypto-browserify"],
+      "stream": ["./node_modules/stream-browserify"]
     }
   },
   "exclude": ["node_modules", "tmp"]

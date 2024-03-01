@@ -1,0 +1,27 @@
+<webapp-layout-container>
+  <section class="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:pb-24">
+    <div class="pt-5 pb-10">
+      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+        Account
+      </h1>
+      <p class="mt-1 text-medium text-gray-500">
+        Manage your account; view your wallet balance, see your transaction history and more, all in one place.
+      </p>
+    </div>
+
+    <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
+      <div class="flex flex-col w-full md:w-64 text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-800 flex-shrink-0">
+        <nav class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
+          <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+            {{ link.label }}
+          </a>
+        </nav>
+      </div>
+      <section class="flex-1">
+        <div class="px-4 sm:px-6 lg:px-8">
+          <router-outlet></router-outlet>
+        </div>
+      </section>
+    </div>
+  </section>
+</webapp-layout-container>

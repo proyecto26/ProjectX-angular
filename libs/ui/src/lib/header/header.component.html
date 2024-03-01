@@ -13,9 +13,9 @@
         class="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
       >
         <h1
-          class="my-4 hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
+          class="my-4 items-center hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block"
         >
-          {{ themeEmitted }} {{ title }}
+          {{ title }}
         </h1>
         <img
           alt="Logo"
@@ -30,24 +30,17 @@
     <div
       class="relative flex justify-end sm:gap-4 md:flex-[0.2_0_auto] md:gap-8"
     >
-      <ul class="list-reset hidden flex-1 items-center justify-end xl:flex">
-        <li class="mr-3">
+      <ul class="list-reset flex-1 items-center justify-end xl:flex">
+        <li class="mr-3" *ngFor="let link of links">
           <a
             class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-            href="/artists"
+            [routerLink]="link.href"
           >
-            Artists
-          </a>
-        </li>
-        <li class="mr-3">
-          <a
-            class="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-            href="/events"
-          >
-            Events
+            {{ link.label }}
           </a>
         </li>
       </ul>
+      <ng-content select="[right]"></ng-content>
       <projectx-theme-button (setTheme)="onSetTheme($event)" />
     </div>
   </div>

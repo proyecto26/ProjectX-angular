@@ -7,7 +7,12 @@ export const appRoutes: Route[] = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/home.page').then((m) => m.HomePage),
+          import('./pages/home/home.page').then((m) => m.HomePage),
+      },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('./pages/account/account.module').then((m) => m.AccountPageRoutingModule),
       },
       {
         path: '',
