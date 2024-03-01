@@ -1,18 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { HeaderComponent, FooterComponent } from '@projectx/ui';
-import {
-  HdObscureAddressPipe,
-  HdWalletAdapterDirective,
-} from '@heavy-duty/wallet-adapter-cdk';
-import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-material';
+import { HdWalletAdapterCdkModule } from '@heavy-duty/wallet-adapter-cdk';
+import { HdWalletAdapterMaterialModule } from '@heavy-duty/wallet-adapter-material';
 
 @Component({
   imports: [
     HeaderComponent,
     FooterComponent,
-    HdWalletAdapterDirective,
-    HdObscureAddressPipe,
-    HdWalletMultiButtonComponent,
+    HdWalletAdapterCdkModule,
+    HdWalletAdapterMaterialModule,
   ],
   selector: 'webapp-layout-container',
   templateUrl: './layout-container.component.html',
@@ -22,9 +18,7 @@ import { HdWalletMultiButtonComponent } from '@heavy-duty/wallet-adapter-materia
 export class LayoutContainerComponent {
   @Input() title?: string = 'Jam Sessions';
 
-  headerLinks = [
-    { label: 'Account', href: '/account' },
-  ];
+  headerLinks = [{ label: 'Account', href: '/account' }];
 
   footerLinks = [
     {

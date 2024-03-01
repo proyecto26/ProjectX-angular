@@ -11,8 +11,8 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'account',
-        loadComponent: () =>
-          import('./pages/account/account.page').then((m) => m.AccountPage),
+        loadChildren: () =>
+          import('./pages/account/account.module').then((m) => m.AccountPageRoutingModule),
       },
       {
         path: '',

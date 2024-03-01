@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { getAssociatedTokenAddressSync } from '@solana/spl-token';
-import { map, of, timeout } from 'rxjs';
 import { PublicKey } from '@solana/web3.js';
+import { map, of, timeout } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import {
   TokenBalanceResponse,
+  TokenInfoResponse,
   Transaction,
   TransactionHistoryResponse,
   Transactions,
@@ -21,6 +22,12 @@ const isInvalidTransaction = (transaction: Transaction) => {
 @Injectable({ providedIn: 'root' })
 export class ShyftApiService {
   private readonly http = inject(HttpClient);
+
+  getRpcUrl() {
+    const url = new URL(environment.rpcUrl);
+    url.searchParams.set('api_key', environment.shyftApiKey);
+    return url.toString();
+  }
 
   getAccount(publicKey?: string) {
     if (!publicKey) {
@@ -76,12 +83,31 @@ export class ShyftApiService {
               : {
                   timestamp: new Date(transaction.timestamp),
                   memo: transaction.actions[1].info.message,
-                  amount: transaction.actions[1].info.amount,
+                  amount: transaction.actions[0].info.amount,
                   sign: transaction.actions[0].info.sender === wallet ? -1 : 1,
                   type: 'transfer',
                 }),
           }))
         )
       );
+  }
+
+  getTokenInfo(tokenAddress = environment.mintUSDC) {
+    const url = new URL(
+      '/sol/v1/token/get_info',
+      environment.shyftApiUrl
+    );
+    url.searchParams.append('network', environment.walletNetwork);
+    url.searchParams.append('token_address', tokenAddress);
+
+    return this.http
+      .get<TokenInfoResponse>(url.toString(), {
+        headers: {
+          'x-api-key': environment.shyftApiKey,
+        },
+      })
+      .pipe(
+        timeout(5000),
+        map((res) => res.result));
   }
 }
