@@ -93,7 +93,7 @@ export type Transaction = {
     };
     version: string;
   };
-}
+};
 
 export type TransactionHistoryResponse = {
   success: boolean;
@@ -104,7 +104,39 @@ export type TransactionHistoryResponse = {
 export type Transactions = Array<{
   timestamp: Date;
   type: 'transfer' | 'unknown';
-  memo?: string
-  amount?: number,
-  sign?: -1 | 1,
+  memo?: string;
+  amount?: number;
+  sign?: -1 | 1;
 }>;
+
+export type TokenInfoResponse = {
+  success: boolean;
+  message: string;
+  result: {
+    name: string;
+    symbol: string;
+    image: string;
+    decimals: number;
+    address: string;
+    freeze_authority: string;
+    current_supply: number;
+    extensions: Array<{
+      extension: string;
+      state: {
+        newerTransferFee: {
+          epoch: number;
+          maximumFee: number;
+          transferFeeBasisPoints: number;
+        };
+        olderTransferFee: {
+          epoch: number;
+          maximumFee: number;
+          transferFeeBasisPoints: number;
+        };
+        transferFeeConfigAuthority: null;
+        withdrawWithheldAuthority: string;
+        withheldAmount: number;
+      };
+    }>;
+  };
+};

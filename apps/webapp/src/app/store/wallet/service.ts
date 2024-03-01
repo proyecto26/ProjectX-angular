@@ -7,6 +7,7 @@ import { map, of, timeout } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   TokenBalanceResponse,
+  TokenInfoResponse,
   Transaction,
   TransactionHistoryResponse,
   Transactions,
@@ -89,5 +90,24 @@ export class ShyftApiService {
           }))
         )
       );
+  }
+
+  getTokenInfo(tokenAddress = environment.mintUSDC) {
+    const url = new URL(
+      '/sol/v1/token/get_info',
+      environment.shyftApiUrl
+    );
+    url.searchParams.append('network', environment.walletNetwork);
+    url.searchParams.append('token_address', tokenAddress);
+
+    return this.http
+      .get<TokenInfoResponse>(url.toString(), {
+        headers: {
+          'x-api-key': environment.shyftApiKey,
+        },
+      })
+      .pipe(
+        timeout(5000),
+        map((res) => res.result));
   }
 }

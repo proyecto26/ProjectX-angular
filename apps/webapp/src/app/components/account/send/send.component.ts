@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { createTransferInstructions } from '@heavy-duty/spl-utils';
 import { SwalComponent, SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PublicKey } from '@solana/web3.js';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -34,15 +33,12 @@ export class SendComponent implements OnInit {
 
   async onSubmitForm(payload: TransferForm, publicKey: PublicKey) {
     console.log('onSubmitForm', payload);
-    const instructions = createTransferInstructions({
+    this.walletStore.sendTransaction({
       amount: payload.amount,
       memo: payload.memo,
-      mintAddress: environment.mintUSDC,
+      tokenAddress: environment.mintUSDC,
       senderAddress: publicKey.toBase58(),
       receiverAddress: payload.receiver,
-      fundReceiver: true,
     });
-
-    return this.walletStore.sendTransaction(instructions);
   }
 }
