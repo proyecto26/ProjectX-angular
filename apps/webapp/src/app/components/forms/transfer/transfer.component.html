@@ -4,7 +4,7 @@
     <input matInput placeholder="Memo" formControlName="memo" required />
     <mat-icon matSuffix>description</mat-icon>
     <mat-error *ngIf="form.get('memo')?.hasError('required')">
-      Memo is requiredf
+      Memo is required
     </mat-error>
   </mat-form-field>
 
