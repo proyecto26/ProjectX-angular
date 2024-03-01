@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -17,8 +18,7 @@ export const appConfig: ApplicationConfig = {
       autoConnect: !!localStorage.getItem('autoConnect'),
     }),
     provideHttpClient(),
-    importProvidersFrom([
-      SweetAlert2Module.forRoot(),
-    ])
+    importProvidersFrom([SweetAlert2Module.forRoot()]),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
 };
