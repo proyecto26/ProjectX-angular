@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SwalComponent, SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PublicKey } from '@solana/web3.js';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import Swal from 'sweetalert2';
 
 import { WalletStore } from '../../../store';
 import {
@@ -38,15 +39,16 @@ export class SendComponent implements OnInit {
   constructor(private router: Router) {
     effect(() => {
       if (this.walletStore.error && this.walletStore.error()) {
-        console.log('error', this.walletStore.error());
+        const error = this.walletStore.error();
+        console.error('error', error);
         this.errorMessage =
-          this.walletStore.error() || 'An error occurred while sending transaction';
+          error || 'An error occurred while sending transaction';
         this.errorSwal.fire();
       }
     });
     effect(() => {
       if (this.walletStore.signature && this.walletStore.signature()) {
-        console.warn('signature', this.walletStore.signature())
+        console.warn('signature', this.walletStore.signature());
         this.confirmationSwal.fire();
       }
     });
@@ -64,6 +66,16 @@ export class SendComponent implements OnInit {
       tokenAddress: environment.mintUSDC,
       senderAddress: publicKey.toBase58(),
       receiverAddress: payload.receiver,
+    });
+
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Please wait...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
     });
   }
 
