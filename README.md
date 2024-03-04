@@ -69,3 +69,7 @@ It will show tasks that you can run with Nx.
 - [Join the community](https://nx.dev/community)
 - [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
+
+## Proposals
+
+- Add a pre-sale section/module with features like crowdfunding, refunds, prizes.
