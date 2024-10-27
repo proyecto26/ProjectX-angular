@@ -1,4 +1,4 @@
-# ProjectX
+# ProjectX Angular
 
 <p align="center">
   <img width="1289" alt="ProjectX-angular" src="https://github.com/proyecto26/ProjectX-angular/assets/2154886/4487731e-322e-4419-a6c5-65e26ffdb9ae">
